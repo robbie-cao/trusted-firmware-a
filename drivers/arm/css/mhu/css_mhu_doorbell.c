@@ -38,3 +38,12 @@ void mhuv2_ring_doorbell(struct scmi_channel_plat_info *plat_info)
 
 	return;
 }
+
+void mhuv3_ring_doorbell(struct scmi_channel_plat_info *plat_info)
+{
+	MHU_RING_DOORBELL(plat_info->db_reg_addr,
+			plat_info->db_modify_mask,
+			plat_info->db_preserve_mask);
+
+	return;
+}

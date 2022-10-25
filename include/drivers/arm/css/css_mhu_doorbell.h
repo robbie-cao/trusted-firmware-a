@@ -22,6 +22,10 @@
 #define SENDER_REG_STAT(_channel)	(0x20 * (_channel))
 #define SENDER_REG_SET(_channel)	((0x20 * (_channel)) + 0xC)
 
+#define MHU3_PBX_PDBCW_PAGE_OFFSET      UINT32_C(0x00001000)
+#define MHU3_SENDER_REG_STAT(_channel)	(MHU3_PBX_PDBCW_PAGE_OFFSET + (0x20 * (_channel)))
+#define MHU3_SENDER_REG_SET(_channel)	(MHU3_PBX_PDBCW_PAGE_OFFSET + ((0x20 * (_channel)) + 0xC))
+
 /* Helper macro to ring doorbell */
 #define MHU_RING_DOORBELL(addr, modify_mask, preserve_mask)	do {	\
 		uint32_t db = mmio_read_32(addr) & (preserve_mask);	\
@@ -40,5 +44,6 @@
 struct scmi_channel_plat_info;
 void mhu_ring_doorbell(struct scmi_channel_plat_info *plat_info);
 void mhuv2_ring_doorbell(struct scmi_channel_plat_info *plat_info);
+void mhuv3_ring_doorbell(struct scmi_channel_plat_info *plat_info);
 
 #endif	/* CSS_MHU_DOORBELL_H */
