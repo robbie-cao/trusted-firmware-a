@@ -1233,6 +1233,9 @@ subsections:
   - title: Tools
 
     subsections:
+      - title: Clang-Format
+        scope: clang-format
+
       - title: STM32 Image
         scope: stm32image
 
