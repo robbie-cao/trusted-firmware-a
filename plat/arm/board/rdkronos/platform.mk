@@ -47,6 +47,12 @@ BL31_SOURCES		+=	${RDKRONOS_CPU_SOURCES}			\
 				lib/utils/mem_region.c			\
 				plat/arm/common/arm_nor_psci_mem_protect.c
 
+
+ifeq (${BL2_AT_EL3},1)
+BL2_SOURCES		+=	${RDKRONOS_CPU_SOURCES} \
+				${RDKRONOS_BASE}/rdkronos_bl2_el3_setup.c
+endif
+
 # Add the FDT_SOURCES and options for Dynamic Config
 FDT_SOURCES		+=	${RDKRONOS_BASE}/fdts/${PLAT}_fw_config.dts \
 				${RDKRONOS_BASE}/fdts/${PLAT}_tb_fw_config.dts \
@@ -61,7 +67,6 @@ $(eval $(call TOOL_ADD_PAYLOAD,${FW_CONFIG},--fw-config,${FW_CONFIG}))
 $(eval $(call TOOL_ADD_PAYLOAD,${TB_FW_CONFIG},--tb-fw-config,${TB_FW_CONFIG}))
 # Add the HW_CONFIG to FIP and specify the same to certtool
 $(eval $(call TOOL_ADD_PAYLOAD,${HW_CONFIG},--hw-config,${HW_CONFIG}))
-
 
 include plat/arm/common/arm_common.mk
 include plat/arm/css/common/css_common.mk
