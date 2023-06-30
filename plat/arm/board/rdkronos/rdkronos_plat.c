@@ -20,6 +20,7 @@ const mmap_region_t plat_arm_mmap[] = {
 #if IMAGE_BL2
 	KRONOS_MAP_NS_DRAM1,
 #endif
+	KRONOS_MAP_S_DRAM1,
 	{0}
 };
 

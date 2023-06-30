@@ -21,7 +21,7 @@ CSS_USE_SCMI_SDS_DRIVER			:= 1
 ENABLE_FEAT_FGT				:= 1
 ENABLE_FEAT_ECV				:= 1
 HW_ASSISTED_COHERENCY			:= 1
-NEED_BL32				:= 0
+NEED_BL32				:= yes
 USE_COHERENT_MEM			:= 0
 
 GIC_ENABLE_V4_EXTN	:= 1
@@ -60,6 +60,14 @@ FDT_SOURCES		+=	${RDKRONOS_BASE}/fdts/${PLAT}_fw_config.dts \
 FW_CONFIG		:=	${BUILD_PLAT}/fdts/${PLAT}_fw_config.dtb
 TB_FW_CONFIG		:=	${BUILD_PLAT}/fdts/${PLAT}_tb_fw_config.dtb
 HW_CONFIG		:=	${BUILD_PLAT}/fdts/${PLAT}.dtb
+
+RDKRONOS_SPMC_MANIFEST_DTS	:=	${RDKRONOS_BASE}/fdts/${PLAT}_optee_spmc_manifest.dts
+FDT_SOURCES		+=	${RDKRONOS_SPMC_MANIFEST_DTS}
+RDKRONOS_TOS_FW_CONFIG	:=	${BUILD_PLAT}/fdts/${PLAT}_optee_spmc_manifest.dtb
+
+# Add the TOS_FW_CONFIG to FIP and specify the same to certtool
+$(eval $(call TOOL_ADD_PAYLOAD,${RDKRONOS_TOS_FW_CONFIG},--tos-fw-config,${RDKRONOS_TOS_FW_CONFIG}))
+
 
 # Add the FW_CONFIG to FIP and specify the same to certtool
 $(eval $(call TOOL_ADD_PAYLOAD,${FW_CONFIG},--fw-config,${FW_CONFIG}))
