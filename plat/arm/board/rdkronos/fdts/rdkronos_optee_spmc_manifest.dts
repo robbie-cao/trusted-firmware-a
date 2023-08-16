@@ -22,9 +22,9 @@
 		maj_ver = <0x1>;
 		min_ver = <0x0>;
 		exec_state = <0x0>;
-		load_address = <0x0 0xfe000000>;
-		entrypoint = <0x0 0xfe000000>;
-		binary_size = <0x02000000>;
+		load_address = <0x0 0xffc00000>;
+		entrypoint = <0x0 0xffc00000>;
+		binary_size = <0x00400000>;
 	};
 };
 
