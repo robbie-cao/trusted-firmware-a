@@ -15,6 +15,8 @@ override ENABLE_AMU			:= 1
 override NEED_BL1			:= 0
 override NEED_BL2U			:= 0
 override PSCI_EXTENDED_STATE_ID		:= 1
+override ENABLE_SVE_FOR_SWD		:= 1
+override ENABLE_SVE_FOR_NS		:= 1
 
 BL2_AT_EL3				:= 1
 CSS_USE_SCMI_SDS_DRIVER			:= 1
