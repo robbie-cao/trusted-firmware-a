@@ -131,6 +131,10 @@
 						SOC_SYSTEM_PERIPH_SIZE,\
 						MT_DEVICE | MT_RW | MT_SECURE)
 
+#define FIP_BANK0_OFFSET		0x7000
+#define FIP_SIGNATURE_HEADER		0x400
+#define PLAT_ARM_FIP_OFFSET_IN_GPT	(FIP_BANK0_OFFSET + FIP_SIGNATURE_HEADER)
+
 /*******************************************************************************
  * Memprotect definitions
  ******************************************************************************/

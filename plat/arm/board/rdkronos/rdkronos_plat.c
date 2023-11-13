@@ -10,6 +10,9 @@
 #include <lib/fconf/fconf_dyn_cfg_getter.h>
 #include <plat/arm/common/plat_arm.h>
 #include <plat/common/platform.h>
+#include <plat/arm/common/arm_fconf_getter.h>
+#include <plat/arm/common/arm_fconf_io_storage.h>
+#include <drivers/io/io_storage.h>
 
 const mmap_region_t plat_arm_mmap[] = {
 	ARM_MAP_SHARED_RAM,
@@ -59,4 +62,19 @@ void soc_css_init_nic400(void)
 
 void soc_css_init_pcie(void)
 {
+}
+
+void bl2_platform_setup(void)
+{
+	arm_bl2_platform_setup();
+
+	const struct plat_io_policy *policy;
+	policy = FCONF_GET_PROPERTY(arm, io_policies, FIP_IMAGE_ID);
+
+	assert(policy != NULL);
+	assert(policy->image_spec != 0UL);
+
+	io_block_spec_t *spec = (io_block_spec_t *)policy->image_spec;
+	spec->offset += FIP_SIGNATURE_HEADER;
+	spec->length -= FIP_SIGNATURE_HEADER;
 }

@@ -7,6 +7,7 @@
 #include <assert.h>
 
 #include <drivers/generic_delay_timer.h>
+#include <drivers/partition/partition.h>
 #include <plat/arm/common/plat_arm.h>
 #include <plat/common/platform.h>
 #include <platform_def.h>
@@ -41,6 +42,11 @@ void arm_bl2_el3_early_platform_setup(void)
 
 	/* Initialise the IO layer and register platform IO devices */
 	plat_arm_io_setup();
+
+	/* Load partition table */
+#if ARM_GPT_SUPPORT
+	partition_init(GPT_IMAGE_ID);
+#endif /* ARM_GPT_SUPPORT */
 }
 
 void bl2_el3_early_platform_setup(u_register_t arg0 __unused,
