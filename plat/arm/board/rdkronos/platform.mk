@@ -17,6 +17,8 @@ override NEED_BL2U			:= 0
 override PSCI_EXTENDED_STATE_ID		:= 1
 override ENABLE_SVE_FOR_SWD		:= 1
 override ENABLE_SVE_FOR_NS		:= 1
+override ARM_GPT_SUPPORT		:=1
+override PSA_FWU_SUPPORT		:=1
 
 BL2_AT_EL3				:= 1
 CSS_USE_SCMI_SDS_DRIVER			:= 1
@@ -26,6 +28,7 @@ GICV3_SUPPORT_GIC600		        := 1
 HW_ASSISTED_COHERENCY			:= 1
 NEED_BL32				:= yes
 USE_COHERENT_MEM			:= 0
+NR_OF_IMAGES_IN_FW_BANK			:=1
 
 GIC_ENABLE_V4_EXTN	:= 1
 include drivers/arm/gic/v3/gicv3.mk
