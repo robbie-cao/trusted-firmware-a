@@ -340,7 +340,10 @@ void __dead2 css_scp_system_off(int state)
 
 	/* Powerdown of primary core */
 	psci_pwrdown_cpu(PLAT_MAX_PWR_LVL);
-	wfi();
+
+	while (true) {
+		wfi();
+	}
 	ERROR("CSS set power state: operation not handled.\n");
 	panic();
 }
